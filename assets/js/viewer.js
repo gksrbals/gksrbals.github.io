@@ -6,13 +6,27 @@ let pdfDoc = null;
 let pageNum = 1;
 let pageRendering = false;
 let pageNumPending = null;
+let hideTimer = null;
+
 const canvas = document.getElementById('pdf-canvas');
 const ctx = canvas.getContext('2d');
+const progressBar = document.getElementById('progress-bar');
+const controlsOverlay = document.getElementById('controls-overlay');
 
 function getFileNameFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const fileName = params.get('file');
     return fileName ? decodeURIComponent(fileName) : null;
+}
+
+function showControls() {
+    controlsOverlay.classList.remove('hidden');
+    document.body.style.cursor = '';
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+        controlsOverlay.classList.add('hidden');
+        document.body.style.cursor = 'none';
+    }, 3000);
 }
 
 async function renderPage(num) {
@@ -43,6 +57,7 @@ async function renderPage(num) {
     }
 
     document.getElementById('page-num').textContent = num;
+    progressBar.style.width = (num / pdfDoc.numPages * 100) + '%';
 }
 
 function queueRenderPage(num) {
@@ -68,13 +83,20 @@ function onNextPage() {
 document.getElementById('prev-page').addEventListener('click', onPrevPage);
 document.getElementById('next-page').addEventListener('click', onNextPage);
 
+window.addEventListener('mousemove', showControls);
+window.addEventListener('mousedown', showControls);
+
 window.addEventListener('keydown', (e) => {
+    showControls();
     if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         onPrevPage();
     } else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
         onNextPage();
     } else if (e.key === 'f' || e.key === 'F') {
         toggleFullScreen();
+    } else if (e.key === 'Escape' && !document.fullscreenElement) {
+        location.href = 'index.html';
     }
 });
 
@@ -100,8 +122,8 @@ async function init() {
         return;
     }
 
-    document.getElementById('file-name').textContent = fileName;
     document.title = `${fileName} - Presentation`;
+    showControls();
 
     try {
         pdfDoc = await pdfjsLib.getDocument(`pdfs/${fileName}`).promise;

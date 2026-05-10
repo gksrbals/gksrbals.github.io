@@ -26,12 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 li.innerHTML = `
                     <a href="viewer.html?file=${encodedName}">
-                        <div class="pdf-card">
-                            <div class="pdf-icon">📄</div>
-                            <div class="pdf-info">
-                                <span class="pdf-name"></span>
-                            </div>
-                        </div>
+                        <span class="pdf-icon">📄</span>
+                        <span class="pdf-name"></span>
                     </a>
                 `;
                 li.querySelector('.pdf-name').textContent = fileName;

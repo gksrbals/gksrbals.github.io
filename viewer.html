@@ -10,28 +10,20 @@
 </head>
 <body class="viewer-body">
     <div id="viewer-container">
-        <div id="toolbar">
-            <div class="toolbar-left">
-                <button id="back-btn" onclick="location.href='index.html'">목록으로</button>
-                <span id="file-name">로딩 중...</span>
-            </div>
-            <div class="toolbar-center">
-                <button id="prev-page">◀</button>
-                <span id="page-info">
-                    <span id="page-num">0</span> / <span id="page-count">0</span> 페이지
-                </span>
-                <button id="next-page">▶</button>
-            </div>
-            <div class="toolbar-right">
-                <button id="fullscreen-btn">전체화면</button>
-            </div>
-        </div>
+        <div id="progress-bar"></div>
 
         <div id="canvas-wrapper">
             <canvas id="pdf-canvas"></canvas>
         </div>
-        
-        <!-- Loading Overlay -->
+
+        <div id="controls-overlay">
+            <button class="ctrl-btn" id="back-btn" onclick="location.href='index.html'">← 목록</button>
+            <button class="ctrl-btn" id="prev-page">◀</button>
+            <span id="page-info"><span id="page-num">0</span> / <span id="page-count">0</span></span>
+            <button class="ctrl-btn" id="next-page">▶</button>
+            <button class="ctrl-btn" id="fullscreen-btn">⛶ 전체화면</button>
+        </div>
+
         <div id="loading-overlay">
             <div class="spinner"></div>
             <p>PDF를 불러오는 중...</p>
