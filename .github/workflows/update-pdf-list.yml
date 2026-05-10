@@ -18,9 +18,41 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install poppler-utils
+        run: sudo apt-get install -y poppler-utils
+
       - name: Generate PDF list
         run: |
-          find pdfs -maxdepth 1 -name "*.pdf" -printf "%f\n" | sort | jq -R . | jq -s . > pdf-list.json
+          python3 - <<'EOF'
+          import json, subprocess, os, glob
+
+          files = sorted(
+              os.path.basename(f)
+              for f in glob.glob('pdfs/*.pdf')
+          )
+
+          result = []
+          for name in files:
+              try:
+                  out = subprocess.check_output(
+                      ['pdfinfo', f'pdfs/{name}'],
+                      stderr=subprocess.DEVNULL,
+                      text=True
+                  )
+                  pages = next(
+                      (int(line.split(':')[1].strip())
+                       for line in out.splitlines()
+                       if line.startswith('Pages:')),
+                      1
+                  )
+              except Exception:
+                  pages = 1
+              result.append({'name': name, 'pages': pages})
+
+          with open('pdf-list.json', 'w') as f:
+              json.dump(result, f, ensure_ascii=False)
+          print(f'Generated {len(result)} entries')
+          EOF
 
       - name: Commit and push changes
         run: |

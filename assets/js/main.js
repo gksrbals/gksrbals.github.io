@@ -17,20 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            pdfFiles.forEach(fileName => {
+            pdfFiles.forEach(({ name, pages }) => {
                 const li = document.createElement('li');
                 li.className = 'pdf-item';
-                
-                // 파일명 인코딩 (한글, 공백 처리)
-                const encodedName = encodeURIComponent(fileName);
-                
+
+                const encodedName = encodeURIComponent(name);
+                const pagesParam = pages ? `&pages=${pages}` : '';
+
                 li.innerHTML = `
-                    <a href="viewer.html?file=${encodedName}">
+                    <a href="viewer.html?file=${encodedName}${pagesParam}">
                         <span class="pdf-icon">📄</span>
                         <span class="pdf-name"></span>
                     </a>
                 `;
-                li.querySelector('.pdf-name').textContent = fileName;
+                li.querySelector('.pdf-name').textContent = name;
                 listElement.appendChild(li);
             });
         } catch (error) {

@@ -1,3 +1,6 @@
-[
-  "sample.pdf"
+﻿[
+    {
+        "name": "sample.pdf",
+        "pages": 1
+    }
 ]
