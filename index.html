@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게쩌는 사이트 🚀</title>
+    <style>
+        /* 구글 폰트 불러오기 */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        /* 기본 마진/패딩 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 배경 애니메이션 설정 */
+        body {
+            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 멋진 그라데이션 컬러 조합 */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* 그라데이션 움직임 키프레임 */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 글래스모피즘 (유리 질감) 카드 스타일 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px); /* 배경 블러 처리 */
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4rem 5rem;
+            text-align: center;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            /* 공중에 둥둥 떠있는 효과 */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* 둥둥 떠다니는 애니메이션 키프레임 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 텍스트 스타일링 */
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* 네온 발광 버튼 스타일 */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* 버튼 마우스 오버 효과 */
+        .btn:hover {
+            background: #ffffff;
+            color: #e73c7e;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>게쩌는 웹사이트 🚀</h1>
+        <p>HTML과 CSS만으로 만든 예술 작품입니다.</p>
+        <a href="#" class="btn" onclick="alert('환영합니다! 오늘 하루도 게쩌는 하루 보내세요! 🎉')">클릭해보기</a>
+    </div>
+
+</body>
+</html>
