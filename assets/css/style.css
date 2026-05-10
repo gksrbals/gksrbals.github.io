@@ -1,0 +1,201 @@
+/* 기본 스타일 */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --viewer-bg: #1a1a1a;
+    --toolbar-bg: rgba(0, 0, 0, 0.8);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* 목록 스타일 */
+.pdf-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.pdf-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.pdf-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pdf-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.pdf-name {
+    font-weight: 600;
+    word-break: break-all;
+}
+
+/* 뷰어 스타일 */
+.viewer-body {
+    background-color: var(--viewer-bg);
+    overflow: hidden;
+    height: 100vh;
+}
+
+#viewer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#toolbar {
+    background: var(--toolbar-bg);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+#canvas-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+#pdf-canvas {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    background: white;
+}
+
+/* 버튼 스타일 */
+button {
+    background: #444;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #666;
+}
+
+#prev-page, #next-page {
+    font-size: 1.2rem;
+    background: transparent;
+}
+
+#prev-page:hover, #next-page:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#page-info {
+    margin: 0 1rem;
+    font-size: 1.1rem;
+}
+
+/* 로딩 오버레이 */
+#loading-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 상태 메시지 */
+.loading, .empty, .error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.error {
+    color: #e74c3c;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem 0;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+    .toolbar-left span {
+        display: none;
+    }
+    #toolbar {
+        padding: 0.5rem;
+    }
+}

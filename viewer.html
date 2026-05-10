@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer - PPT Mode</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- PDF.js library via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body class="viewer-body">
+    <div id="viewer-container">
+        <div id="toolbar">
+            <div class="toolbar-left">
+                <button id="back-btn" onclick="location.href='index.html'">목록으로</button>
+                <span id="file-name">로딩 중...</span>
+            </div>
+            <div class="toolbar-center">
+                <button id="prev-page">◀</button>
+                <span id="page-info">
+                    <span id="page-num">0</span> / <span id="page-count">0</span> 페이지
+                </span>
+                <button id="next-page">▶</button>
+            </div>
+            <div class="toolbar-right">
+                <button id="fullscreen-btn">전체화면</button>
+            </div>
+        </div>
+
+        <div id="canvas-wrapper">
+            <canvas id="pdf-canvas"></canvas>
+        </div>
+        
+        <!-- Loading Overlay -->
+        <div id="loading-overlay">
+            <div class="spinner"></div>
+            <p>PDF를 불러오는 중...</p>
+        </div>
+    </div>
+    <script src="assets/js/viewer.js"></script>
+</body>
+</html>
